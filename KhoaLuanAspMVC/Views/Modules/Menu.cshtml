@@ -1,0 +1,48 @@
+﻿
+<div id="layoutSidenav_nav">
+    @{ var userInfomatiom = (KhoaLuanAspMVC.Models.SINHVIEN)Session["USER"]; }
+    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+        <div class="sb-sidenav-menu">
+            <div class="nav">
+
+                <a class="nav-link collapsed" href="/Home/Index">
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Bảng điều khiển
+
+                </a>
+                @if (userInfomatiom.MASV == "QUANLY")
+                {
+                    <a class="nav-link collapsed" href="/SinhVien/Index">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        Quản lý sinh viên
+
+                    </a>
+
+                    <a class="nav-link collapsed" href="/Diem/Index">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        Tra cứu điểm
+
+                    </a>
+                }
+                else
+                {
+                    <a class="nav-link collapsed" href="/SinhVien/Detail/@userInfomatiom.MASV">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        Thông tin cá nhân
+
+                    </a>
+                    <a class="nav-link collapsed" href="/Diem/DiemSV/@userInfomatiom.MASV">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        Điểm môn học
+                    </a>
+                }
+                <a class="nav-link collapsed" href="/CtDaoTao/Index">
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Chương trình đào tạo
+                </a>
+            </div>
+        </div>
+
+    </nav>
+</div>
+

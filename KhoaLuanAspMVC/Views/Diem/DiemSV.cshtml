@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "DiemSV";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Tra cứu điểm</h1>
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4>Tổng số tín chỉ tích lũy : @ViewBag.SoTC</h4>
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>Mã học phần</th>
+                            <th>Tên học phần</th>
+                            <th>Số TC</th>
+                            <th>Học kỳ </th>
+                            <th>Bắt đầu</th>
+                            <th>Kết thúc</th>
+                            <th>Hình thức</th>
+                            <th>Loại học phần</th>
+                            <th>Điểm</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in ViewBag.List)
+                        {
+                        <tr>
+                            <td>@item.IDHP</td>
+                            <td>@item.HOCPHAN.TENHP</td>
+                            <td>@item.HOCPHAN.SOTC</td>
+                            <td>@item.HOCPHAN.HOCKY</td>
+                            <td>@String.Format("{0:yyyy-MM-dd}", item.HOCPHAN.TGBATDAU)</td>
+                            <td>@String.Format("{0:yyyy-MM-dd}", item.HOCPHAN.TGKETTHUC)</td>
+                            <td>@item.HOCPHAN.HINHTHUC</td>
+                            <td>@item.HOCPHAN.LOAIHP</td>
+                            <td>
+                                @item.DIEM1
+                            </td>
+                        </tr>
+
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</main>
+

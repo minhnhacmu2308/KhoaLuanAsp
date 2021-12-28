@@ -128,9 +128,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\Admin\AdminHomeController.cs" />
-    <Compile Include="Controllers\Admin\AdminModulesController.cs" />
+    <Compile Include="Controllers\AuthenticationController.cs" />
+    <Compile Include="Controllers\CtDaoTaoController.cs" />
+    <Compile Include="Controllers\DiemController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ModulesController.cs" />
+    <Compile Include="Controllers\SinhVienController.cs" />
     <Compile Include="Daos\ChuyenNganhDao.cs" />
     <Compile Include="Daos\CtDaoTaoDao.cs" />
     <Compile Include="Daos\DiemDao.cs" />
@@ -197,11 +200,16 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\AdminModules\Header.cshtml" />
-    <Content Include="Views\AdminModules\Footer.cshtml" />
-    <Content Include="Views\AdminModules\Menu.cshtml" />
-    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
-    <Content Include="Views\AdminHome\Index.cshtml" />
+    <Content Include="Views\Modules\Footer.cshtml" />
+    <Content Include="Views\Modules\Header.cshtml" />
+    <Content Include="Views\Modules\Menu.cshtml" />
+    <Content Include="Views\Authentication\Login.cshtml" />
+    <Content Include="Views\SinhVien\Index.cshtml" />
+    <Content Include="Views\CtDaoTao\Index.cshtml" />
+    <Content Include="Views\Diem\Index.cshtml" />
+    <Content Include="Views\SinhVien\Detail.cshtml" />
+    <Content Include="Views\Diem\DiemSV.cshtml" />
+    <Content Include="Views\SinhVien\XepLoai.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

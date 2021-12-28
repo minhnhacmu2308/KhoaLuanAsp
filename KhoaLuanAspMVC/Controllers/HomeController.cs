@@ -1,4 +1,5 @@
 ﻿using KhoaLuanAspMVC.Daos;
+using KhoaLuanAspMVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,15 @@ namespace KhoaLuanAspMVC.Controllers
         SinhVienDao sinhVienDao = new SinhVienDao();
         public ActionResult Index()
         {
-            var list = sinhVienDao.getAll();
-            ViewBag.TotalCount = list.Count;
-            return View();
+            var result = (SINHVIEN)Session["USER"];
+            if (result == null)
+            {
+                return RedirectToAction("Login", "Authentication");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public ActionResult About()

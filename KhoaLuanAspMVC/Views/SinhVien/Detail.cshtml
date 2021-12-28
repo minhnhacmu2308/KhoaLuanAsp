@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    @{ var item = ViewBag.SV;}
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Thông tin sinh viên : @item.HOTEN </h1>
+        <div class="card mb-4">
+            <div class="card-header">
+            </div>
+            <div class="card-body">
+                <div class="col">
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="category-film" class="col-form-label">Mã sinh viên: </label>
+                            <input type="text" class="form-control" id="tenphim" name="MASV" value="@item.MASV" tabindex="1" readonly>
+                        </div>
+                        <div class="col-6">
+                            <label for="category-film" class="col-form-label">Họ tên: </label>
+                            <input type="text" class="form-control" id="dienvien" name="HOTEN" value="@item.HOTEN" tabindex="2" readonly>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="category-film" class="col-form-label">Giới tính: </label>
+                            <input type="text" class="form-control" id="dienvien" name="HOTEN" value="@item.GIOITINH" tabindex="2" readonly>
+                        </div>
+                        <div class="col-6">
+                            <label for="category-film" class="col-form-label">Ngày sinh: </label>
+                            <input type="date" class="form-control" id="daodien" name="NGAYSINH" value="@String.Format("{0:yyyy-MM-dd}", item.NGAYSINH)" tabindex="3" readonly>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 ">
+                            <label for="category-film" class="col-form-label">Nơi sinh: </label>
+                            <input type="text" class="form-control" id="daodien" name="NOISINH" value="@item.NOISINH" tabindex="3" readonly>
+                        </div>
+                        <div class="col-6 mt-3 ">
+                            <label for="exampleFormControlFile1">Địa chỉ </label>
+                            <input type="text" class="form-control" id="daodien" name="DIACHI" value="@item.DIACHI" tabindex="3" readonly>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 ">
+                            <label for="category-film" class="col-form-label">Tài khoản: </label>
+                            <input type="text" class="form-control" id="daodien" name="TAIKHOAN" value="@item.TAIKHOAN" tabindex="3" readonly>
+                        </div>
+                        <div class="col-6 mt-3 ">
+                            <label for="exampleFormControlFile1">Mật khẩu </label>
+                            <input type="text" class="form-control" id="daodien" name="MATKHAU" value="@item.MATKHAU" tabindex="3" readonly>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="category-film" class="col-form-label">Lớp: </label>
+                            <input type="text" class="form-control" id="daodien" name="GHICHU" value="@item.LOP.TENLOP" tabindex="3" readonly>
+                        </div>
+                        <div class="col-6">
+                            <label for="category-film" class="col-form-label">Chuyên ngành: </label>
+                            <input type="text" class="form-control" id="daodien" name="GHICHU" value="@item.CHUYENNGANH.TENCN" tabindex="3" readonly>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-12 ">
+                            <label for="category-film" class="col-form-label">Ghi chú: </label>
+                            <input type="text" class="form-control" id="daodien" name="GHICHU" value="@item.GHICHU" tabindex="3" readonly>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
+

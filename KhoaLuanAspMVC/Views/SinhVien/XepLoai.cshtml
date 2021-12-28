@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "XepLoai";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    <div class="container-fluid px-4">
+        @{ var check = "08DH                ";}
+        <h1 class="mt-4">Quản lí sinh viên</h1>
+        <div class="card mb-4">
+            <div class="card-header">
+                @if (ViewBag.Msg != null)
+                {
+                    if (ViewBag.Msg == "1")
+                    {
+                        <div class="alert alert-success">
+                            <strong>Thành công</strong>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-danger">
+                            <strong>Thất bại</strong>
+                        </div>
+                    }
+                }
+                <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                        data-bs-target="#exampleModalAdd">
+                    Thêm mới
+                </button>
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>Mã sinh viên</th>
+                            <th>Họ tên</th>
+                            <th>Lớp</th>
+                            <th>Chuyên ngành </th>
+                            <th>Điểm trung bình</th>
+                            <th>Xếp loại</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in ViewBag.List)
+                        {
+                            <tr>
+                                <td>@item.MASV</td>
+                                <td>@item.HOTEN</td>
+                                <td>@item.LOP.TENLOP</td>
+                                <td>@item.CHUYENNGANH.TENCN</td>
+                                @{  var dtb = new KhoaLuanAspMVC.Daos.DiemDao().diemTB(item.MASV);}
+                                <td>@dtb</td>
+                                <td>
+                                    @dtb
+                                </td>
+                            </tr>
+                            
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</main>
+

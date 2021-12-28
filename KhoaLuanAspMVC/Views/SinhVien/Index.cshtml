@@ -1,0 +1,312 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    <div class="container-fluid px-4">
+        @{ var check = "08DH                ";}
+        <h1 class="mt-4">Quản lí sinh viên</h1>
+        <div class="card mb-4">
+            <div class="card-header">
+                @if (ViewBag.Msg != null)
+                {
+                    if (ViewBag.Msg == "1")
+                    {
+                        <div class="alert alert-success">
+                            <strong>Thành công</strong>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-danger">
+                            <strong>Thất bại</strong>
+                        </div>
+                    }
+                }
+                <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                        data-bs-target="#exampleModalAdd">
+                    Thêm mới
+                </button>
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>Mã sinh viên</th>
+                            <th>Họ tên</th>
+                            <th>Lớp</th>
+                            <th>Chuyên ngành </th>
+                            <th>Tình trạng </th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @{
+                            var index = 0;
+                        }
+                        @foreach (var item in ViewBag.List)
+                        {
+                            index++;
+                            var idModelDel = "exampleModalDel" + index;
+                            var idEx1 = "#exampleModalLabel" + index;
+                        <tr>
+                            <td>@item.MASV</td>
+                            <td>@item.HOTEN</td>
+                            <td>@item.LOP.TENLOP</td>
+                            <td>@item.CHUYENNGANH.TENCN</td>
+                            @if(item.LOP.MAKH == check)
+                            {
+                                <td>Ra trường</td>
+                            }
+                            else
+                            {
+                                <td>Đang học</td>
+                            }
+                            <td>
+                                <a href="/SinhVien/Detail/@item.MASV" style="width:100px" type="button" class="btn btn-warning">Chi tiết</a>
+
+                                <button style="width:100px" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="@idEx1">
+                                    Sửa
+                                </button>
+                                <button type="button" data-bs-toggle="modal" data-bs-target="#@idModelDel" style="width:100px" class="btn btn-danger"> Xóa</button>
+                                <div class="modal fade" id="@idModelDel" tabindex="-1"
+                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Bạn chắc chắn muốn xóa ?</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                Sinh viên : @item.HOTEN
+                                                <form action="/SinhVien/Delete" method="post">
+                                                    <input type="hidden" class="form-control" id="id" name="masv" value="@item.MASV">
+                                                    <div class="modal-footer" style="margin-top: 20px">
+                                                        <button style="width:100px" type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">
+                                                            Đóng
+                                                        </button>
+                                                        <button style="width:100px" type="submit" class="btn btn-danger"> Xóa</button>
+
+                                                    </div>
+
+                                                </form>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                            var idEx = "exampleModalLabel" + index;
+                            <!-- Modal Update-->
+                            <div class="modal fade" id="@idEx" tabindex="-1"
+                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Cập nhập </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form enctype="multipart/form-data" action="/SinhVien/Update" method="post">
+                                                <div class="col">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <label for="category-film" class="col-form-label">Mã sinh viên: </label>
+                                                            <input type="text" class="form-control" id="tenphim" name="MASV" value="@item.MASV" tabindex="1" readonly>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <label for="category-film" class="col-form-label">Họ tên: </label>
+                                                            <input type="text" class="form-control" id="dienvien" name="HOTEN" value="@item.HOTEN" tabindex="2" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <label for="category-film" class="col-form-label">Giới tính: </label>
+                                                            <select class="form-select" aria-label="Default select example" id="theloai" tabindex="8" name="GIOITINH" required>
+                                                                <option value="@item.GIOITINH" selected>@item.GIOITINH</option>
+                                                                <option value="Nữ">Nữ</option>
+                                                                <option value="Nam">Nam</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <label for="category-film" class="col-form-label">Ngày sinh: </label>
+                                                            <input type="date" class="form-control" id="daodien" name="NGAYSINH" value="@String.Format("{0:yyyy-MM-dd}", item.NGAYSINH)" tabindex="3" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-6 ">
+                                                            <label for="category-film" class="col-form-label">Nơi sinh: </label>
+                                                            <input type="text" class="form-control" id="daodien" name="NOISINH" value="@item.NOISINH" tabindex="3" required>
+                                                        </div>
+                                                        <div class="col-6 mt-3 ">
+                                                            <label for="exampleFormControlFile1">Địa chỉ </label>
+                                                            <input type="text" class="form-control" id="daodien" name="DIACHI" value="@item.DIACHI" tabindex="3" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-6 ">
+                                                            <label for="category-film" class="col-form-label">Tài khoản: </label>
+                                                            <input type="text" class="form-control" id="daodien" name="TAIKHOAN" value="@item.TAIKHOAN" tabindex="3" required>
+                                                        </div>
+                                                        <div class="col-6 mt-3 ">
+                                                            <label for="exampleFormControlFile1">Mật khẩu </label>
+                                                            <input type="text" class="form-control" id="daodien" name="MATKHAU" value="@item.MATKHAU" tabindex="3" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <label for="category-film" class="col-form-label">Lớp: </label>
+                                                            <select class="form-select" aria-label="Default select example" id="theloai" tabindex="8" name="MALOP" required>
+                                                                <option value="@item.LOP.MALOP" selected>@item.LOP.TENLOP</option>
+                                                                @foreach (var item1 in ViewBag.Lop)
+                                                                {
+                                                                    <option value="@item1.MALOP">@item1.TENLOP</option>
+                                                                }
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <label for="category-film" class="col-form-label">Chuyên ngành: </label>
+                                                            <select class="form-select" aria-label="Default select example" id="theloai" tabindex="8" name="MACN" required>
+                                                                <option value="@item.CHUYENNGANH.MACN" selected>@item.CHUYENNGANH.TENCN</option>
+                                                                @foreach (var item2 in ViewBag.CN)
+                                                                {
+                                                                    <option value="@item2.MACN">@item2.TENCN</option>
+                                                                }
+                                                            </select>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-12 ">
+                                                            <label for="category-film" class="col-form-label">Ghi chú: </label>
+                                                            <input type="text" class="form-control" id="daodien" name="GHICHU" value="@item.GHICHU" tabindex="3" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button style="width:100px" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                                    <button style="width:100px" type="submit" class="btn btn-primary">Lưu </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Modal Update-->
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</main>
+<!-- Modal Add-->
+<div class="modal fade" id="exampleModalAdd" tabindex="-1"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thêm </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form enctype="multipart/form-data" action="/SinhVien/Add" method="post">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="category-film" class="col-form-label">Mã sinh viên: </label>
+                                <input type="text" class="form-control" id="tenphim" name="MASV" tabindex="1" required>
+                            </div>
+                            <div class="col-6">
+                                <label for="category-film" class="col-form-label">Họ tên: </label>
+                                <input type="text" class="form-control" id="dienvien" name="HOTEN" tabindex="2" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="category-film" class="col-form-label">Giới tính: </label>
+                                <select class="form-select" aria-label="Default select example" id="theloai" tabindex="8" name="GIOITINH" required>
+                                    <option value="" selected>Chọn giới tính</option>
+                                    <option value="Nữ">Nữ</option>
+                                    <option value="Nam">Nam</option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <label for="category-film" class="col-form-label">Ngày sinh: </label>
+                                <input type="date" class="form-control" id="daodien" name="NGAYSINH" tabindex="3" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 ">
+                                <label for="category-film" class="col-form-label">Nơi sinh: </label>
+                                <input type="text" class="form-control" id="daodien" name="NOISINH" tabindex="3" required>
+                            </div>
+                            <div class="col-6 mt-3 ">
+                                <label for="exampleFormControlFile1">Địa chỉ </label>
+                                <input type="text" class="form-control" id="daodien" name="DIACHI" tabindex="3" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 ">
+                                <label for="category-film" class="col-form-label">Tài khoản: </label>
+                                <input type="text" class="form-control" id="daodien" name="TAIKHOAN" tabindex="3" required>
+                            </div>
+                            <div class="col-6 mt-3 ">
+                                <label for="exampleFormControlFile1">Mật khẩu </label>
+                                <input type="text" class="form-control" id="daodien" name="MATKHAU" tabindex="3" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="category-film" class="col-form-label">Lớp: </label>
+                                <select class="form-select" aria-label="Default select example" id="theloai" tabindex="8" name="MALOP" required>
+                                    <option value="" selected>Chọn lớp</option>
+                                    @foreach (var item1 in ViewBag.Lop)
+                                    {
+                                        <option value="@item1.MALOP">@item1.TENLOP</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <label for="category-film" class="col-form-label">Chuyên ngành: </label>
+                                <select class="form-select" aria-label="Default select example" id="theloai" tabindex="8" name="MACN" required>
+                                    <option value="" selected>Chọn chuyên ngành</option>
+                                    @foreach (var item2 in ViewBag.CN)
+                                    {
+                                        <option value="@item2.MACN">@item2.TENCN</option>
+                                    }
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-12 ">
+                                <label for="category-film" class="col-form-label">Ghi chú: </label>
+                                <input type="text" class="form-control" id="daodien" name="GHICHU" tabindex="3" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button style="width:100px" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <button style="width:100px" type="submit" class="btn btn-primary">Thêm </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

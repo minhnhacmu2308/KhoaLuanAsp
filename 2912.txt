@@ -1,0 +1,12 @@
+- Đăng nhập : (sinh viên,quản lý)
+- Sinh viên :
+- Xem chương trình đào tạo
+- Xem thông tin cá nhân
+- Xem được điểm các môn đã học
+- Hiển thị tổng số tín chỉ tích lũy của cá nhân
+- Quản lý :
+- Thêm sửa xóa sinh viên
+- Xem chương trình đào tạo
+- Tra cứu điểm sinh viên
+- xem tình trạng sinh viên : ra trường (08), còn học(9,10)
+Deadline : 29/12

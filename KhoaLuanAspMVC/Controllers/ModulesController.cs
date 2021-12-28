@@ -4,11 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace KhoaLuanAspMVC.Controllers.Admin
+namespace KhoaLuanAspMVC.Controllers
 {
-    public class AdminModulesController : Controller
+    public class ModulesController : Controller
     {
-        // GET: AdminModules
+        // GET: Modules
         public ActionResult Index()
         {
             return View();
