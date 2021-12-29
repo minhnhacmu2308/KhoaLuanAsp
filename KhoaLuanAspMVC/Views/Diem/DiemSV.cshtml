@@ -6,10 +6,27 @@
 
 <main>
     <div class="container-fluid px-4">
-        <h1 class="mt-4">Tra cứu điểm</h1>
+        @{ var dtb = ViewBag.DiemTB;}
         <div class="card mb-4">
             <div class="card-header">
-                <h4>Tổng số tín chỉ tích lũy : @ViewBag.SoTC</h4>
+                <h4>
+                    Tổng số tín chỉ tích lũy : @ViewBag.SoTC  -  Điểm trung bình : @dtb  -  Xếp loại : @if (dtb < 4.5)
+                    {
+                        <span>Yếu</span>
+                    }
+                    else if (dtb >= 4.5 && dtb < 6.5)
+                    {
+                        <span>Trung bình</span>
+                    }
+                    else if (dtb >= 6.5 && dtb < 8)
+                    {
+                        <span>Khá</span>
+                    }
+                    else
+                    {
+                        <span>Giỏi</span>
+                    }
+                </h4>
             </div>
             <div class="card-body">
                 <table id="datatablesSimple">

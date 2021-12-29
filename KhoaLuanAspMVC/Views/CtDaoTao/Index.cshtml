@@ -14,13 +14,17 @@
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
-                            <th>Tên chương trình</th>
-                            <th>Trình độ</th>
-                            <th>Ngành đào tạo </th>
-                            <th>Loại hình </th>
-                            <th>Khóa học </th>
-                            <th>Năm bắt đầu</th>
-                            <th>Năm kết thúc</th>
+                            <th>ID Học phần</th>
+                            <th>Mã học phần</th>
+                            <th>Tên học phần</th>
+                            <th>Số tín chỉ </th>
+                            <th>Học kỳ</th>
+                            <th>Thời gian bắt đầu</th>
+                            <th>Thời gian kết thúc</th>
+                            <th>Hình thức</th>
+                            <th>Loại học phần</th>
+                            <th>Chuyên ngành</th>
+                            <th>Chương trình đào tạo</th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -30,17 +34,19 @@
                     <tbody>
                         @foreach (var item in ViewBag.List)
                         {
-                            <tr>
-                                <td>@item.TENCT</td>
-                                <td>@item.TRINHDO</td>
-                                <td>@item.NGANHDAOTAO</td>
-                                <td>@item.LOAIHINH</td>
-                                <td>@item.KHOAHOC.TENKH</td>
-                                <td>@item.KHOAHOC.NAMBD</td>
-                                <td>
-                                    @item.KHOAHOC.NAMKT
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>@item.IDHP</td>
+                            <td>@item.MAHP</td>
+                            <td>@item.TENHP</td>
+                            <td>@item.SOTC</td>
+                            <td>@item.HOCKY</td>
+                            <td>@String.Format("{0:yyyy-MM-dd}", item.TGBATDAU)</td>
+                            <td>@String.Format("{0:yyyy-MM-dd}", item.TGBATDAU)</td>
+                            <td>@item.HINHTHUC</td>
+                            <td>@item.LOAIHP</td>
+                            <td>@item.CHUYENNGANH.TENCN</td>
+                            <td>@item.CTDAOTAO.TENCT</td>
+                        </tr>
 
 
                         }

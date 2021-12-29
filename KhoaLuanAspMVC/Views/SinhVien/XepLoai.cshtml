@@ -57,11 +57,24 @@
                                 @{  var dtb = new KhoaLuanAspMVC.Daos.DiemDao().diemTB(item.MASV);}
                                 <td>@dtb</td>
                                 <td>
-                                    @dtb
+                                    @if (dtb < 4.5)
+                                    {
+                                        <span>Yếu</span>
+                                    }
+                                    else if (dtb >= 4.5 && dtb < 6.5)
+                                    {
+                                        <span>Trung bình</span>
+                                    }
+                                    else if (dtb >= 6.5 && dtb < 8)
+                                    {
+                                        <span>Khá</span>
+                                    }
+                                    else
+                                    {
+                                        <span>Giỏi</span>
+                                    }
                                 </td>
                             </tr>
-                            
-
                         }
                     </tbody>
                 </table>

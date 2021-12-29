@@ -11,10 +11,11 @@ namespace KhoaLuanAspMVC.Controllers
     public class CtDaoTaoController : Controller
     {
         CtDaoTaoDao ctDaoTaoDao = new CtDaoTaoDao();
+        HocPhanDao HocPhanDao = new HocPhanDao();
         // GET: CtDaoTao
         public ActionResult Index()
         {
-            ViewBag.List = ctDaoTaoDao.getAll();
+            ViewBag.List = HocPhanDao.getAll();
             return View();
         }
     }

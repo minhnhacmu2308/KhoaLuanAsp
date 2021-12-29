@@ -20,6 +20,7 @@ namespace KhoaLuanAspMVC.Controllers
         {
             ViewBag.List = diemDao.checkDelete(id);
             ViewBag.SoTC = diemDao.sumTC(id);
+            ViewBag.DiemTB = diemDao.diemTB(id);
             return View();
         }
     }
